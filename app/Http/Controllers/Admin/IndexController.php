@@ -12,4 +12,7 @@ class IndexController extends Controller{
         $admin_name = $request->session()->get('admin_name');
         return view('Admin/Index/index',array('name'=>$admin_name));
     }
+
+
+
 }
