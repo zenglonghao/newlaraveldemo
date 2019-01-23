@@ -23,12 +23,12 @@ Route::get('user/{id}/{name}', function ($id, $name) {
     return '你好,user'.$id.'name='.$name;
 })->where(['id' => '[0-9]+', 'name' => '[a-z]+']);*/
 
-Route::get('login','Admin\LoginController@login');
 
-Route::post('login/save','Admin\LoginController@save');
-Route::get('admin/index','Admin\IndexController@index');
-
-
+Route::get('/login','Admin\LoginController@login');
+Route::post('/login/save','Admin\LoginController@save');
+Route::get('/login/logout','Admin\LoginController@logout');
+Route::get('/admin/index','Admin\IndexController@index')->middleware('adminuser');
+Route::get('/admin/navigation/list','Admin\NavigationController@nlist')->middleware('adminuser');
 
 
 

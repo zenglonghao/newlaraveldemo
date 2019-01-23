@@ -42,10 +42,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{asset('/images/admin/index/avatar-1.png')}}" class="avatar avatar-sm" alt="logo">
-                    <span class="small ml-1 d-md-down-none">admin</span>
+                    <span class="small ml-1 d-md-down-none">{{$name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header">Account</div>
+                    <div class="dropdown-header">账号</div>
                     <a href="#" class="dropdown-item">
                         <i class="fa fa-user"></i> Profile
                     </a>
@@ -61,11 +61,11 @@
                     </a>
 
                     <a href="#" class="dropdown-item">
-                        <i class="fa fa-wrench"></i> Settings
+                        <i class="fa fa-wrench"></i> 个人设置
                     </a>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
+                    <a href="/login/logout" class="dropdown-item">
+                        <i class="fa fa-lock"></i> 退出登录
                     </a>
                 </div>
             </li>
@@ -77,22 +77,19 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-title">Navigation</li>
-
                     <li class="nav-item">
                         <a href="index.html" class="nav-link active">
-                            <i class="icon icon-speedometer"></i> Dashboard
+                            <i class="icon icon-speedometer"></i>首页
                         </a>
                     </li>
-
                     <li class="nav-item nav-dropdown">
                         <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-target"></i> Layouts <i class="fa fa-caret-left"></i>
+                            <i class="icon icon-target"></i>导航<i class="fa fa-caret-left"></i>
                         </a>
-
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
                                 <a href="layouts-normal.html" class="nav-link">
-                                    <i class="icon icon-target"></i> Normal
+                                    <i class="icon icon-target"></i>导航列表
                                 </a>
                             </li>
 

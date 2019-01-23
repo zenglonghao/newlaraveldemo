@@ -30,7 +30,20 @@ class LoginController extends Controller{
        }
     }
 
-
+    /**
+     * 退出操作
+     * */
+    public function logout(Request $request){
+        $request->session()->forget('admin_id');
+        $request->session()->forget('admin_name');
+        if(empty($request->session()->get('admin_id'))){
+            //退出登录
+            return view('message')->with(array('message'=>'退出成功','jumpTime'=>3,'url'=>'/login'));
+        }else{
+            //退出失败
+            return view('message')->with(array('message'=>'退出失败','jumpTime'=>3,'url'=>'/admin/index'));
+        }
+    }
 }
 
 

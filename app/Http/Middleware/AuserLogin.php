@@ -6,10 +6,9 @@ use Closure;
 class AuserLogin{
     public function handle($request, Closure $next)
     {
-        if ($request->age <= 200) {
-            return redirect('home');
+        if (empty($request->session()->get('admin_id'))) {
+            return redirect('/login');
         }
-
         return $next($request);
     }
 }

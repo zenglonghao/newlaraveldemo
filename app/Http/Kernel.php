@@ -8,7 +8,7 @@ class Kernel extends HttpKernel
 {
     /**
      * The application's global HTTP middleware stack.
-     *
+     *全局中间件（处理每个 HTTP 请求期间运行）
      * These middleware are run during every request to your application.
      *
      * @var array
@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware.
-     *
+     *指定的路由分配中间件
      * These middleware may be assigned to groups or used individually.
      *
      * @var array
@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'adminuser'=>\App\Http\Middleware\AuserLogin::class,//后台登录验证中间件
     ];
 }
