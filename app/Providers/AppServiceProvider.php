@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //View::share('name', 'long');
         view()->composer(
-            'app', //模板名
+            ['Layout/Admin/head'], //模板名
             'App\Http\ViewComposers\MovieComposer'  //方法名或者类中的方法
         );
     }
