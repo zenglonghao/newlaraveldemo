@@ -30,6 +30,7 @@ Route::get('/login/logout','Admin\LoginController@logout');
 Route::get('/admin/index','Admin\IndexController@index')->middleware('adminuser');
 Route::get('/admin/navigation/list','Admin\NavigationController@nlist')->middleware('adminuser');
 Route::get('/admin/navigation/add','Admin\NavigationController@nadd')->middleware('adminuser');
+Route::post('/admin/navigation/save','Admin\NavigationController@nsave')->middleware('adminuser');
 
 
 

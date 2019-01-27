@@ -17,5 +17,10 @@ class NavigationController extends Controller{
         return view('Admin/Navigation/nadd');
     }
 
-
+    //保存导航信息
+    public function nsave(){
+        echo '<pre>';
+        print_R($_POST);
+        echo '</pre>';die();
+    }
 }
