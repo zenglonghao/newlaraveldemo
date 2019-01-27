@@ -9,7 +9,13 @@ use Illuminate\Http\Request;
 class NavigationController extends Controller{
     //导航列表
     public function nlist(Request $request){
-        $admin_name = $request->session()->get('admin_name');
-        return view('Admin/Navigation/nlist',array('name'=>$admin_name));
+        return view('Admin/Navigation/nlist');
     }
+
+    //添加导航
+    public function nadd(){
+        return view('Admin/Navigation/nadd');
+    }
+
+
 }
