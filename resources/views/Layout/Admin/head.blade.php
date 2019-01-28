@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('/js/admin/index/vendor/simple-line-icons/css/simple-line-icons.css')}}">
     <link rel="stylesheet" href="{{asset('/js/admin/index/vendor/font-awesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/admin/index/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin/page.css')}}">
 </head>
 <body>
 <div class="page-wrapper">

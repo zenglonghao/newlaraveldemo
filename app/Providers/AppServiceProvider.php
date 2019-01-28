@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //View::share('name', 'long');
         view()->composer(
             ['Layout/Admin/head'], //模板名
             'App\Http\ViewComposers\MovieComposer'  //方法名或者类中的方法

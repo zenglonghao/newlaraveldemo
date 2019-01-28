@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2019 �?01 �?26 �?17:07
+-- 生成日期: 2019 �?01 �?26 �?17:07
 -- 服务器版本: 5.5.53
 -- PHP 版本: 5.6.27
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `case_admin` (
   `admin_login_num` int(11) NOT NULL DEFAULT '0' COMMENT '登录次数',
   `admin_is_super` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否超级管理员',
   `admin_gid` smallint(6) DEFAULT '0' COMMENT '权限组ID',
-  `admin_quick_link` varchar(400) DEFAULT NULL COMMENT '管理员常用操作',
+  `admin_quick_link` varchar(404) DEFAULT NULL COMMENT '管理员常用操作',
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='管理员表' AUTO_INCREMENT=2 ;
 

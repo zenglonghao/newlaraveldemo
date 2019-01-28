@@ -1,161 +1,44 @@
 @extends('Layout.Admin.index')
 @section('content')
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            Default Card
-                        </div>
-
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto atque deleniti dolor dolores doloribus ducimus ea, eveniet facere hic illo illum laborum maiores nemo optio quas quis tenetur totam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header bg-light">
-                            Light Header
-                        </div>
-
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto atque deleniti dolor dolores doloribus ducimus ea, eveniet facere hic illo illum laborum maiores nemo optio quas quis tenetur totam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias architecto atque deleniti dolor dolores doloribus ducimus ea, eveniet facere hic illo illum laborum maiores nemo optio quas quis tenetur totam.
-                        </div>
-
-                        <div class="card-footer bg-light">
-                            Card Footer
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header bg-light">
-                            Card with Actions
-
-                            <div class="card-actions">
-                                <a href="#" class="btn">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </a>
-
-                                <a href="#" class="btn">
-                                    <i class="fa fa-cog"></i>
-                                </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="row p-5">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">id</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">导航标题</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">导航链接</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">是否以新窗口打开</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">排序</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($navlist as $v)
+                                            <tr>
+                                                <td>{{ $v->nav_id }}</td>
+                                                <td>{{ $v->nav_title }}</td>
+                                                <td>{{ $v->nav_url }}</td>
+                                                <td><?php if($v->nav_new_open){echo '是';}else{echo '否';} ?></td>
+                                                <td>{{ $v->nav_sort }}</td>
+                                                <td><a href="/admin/navigation/update/{{ $v->nav_id }}">编辑</a> | <a href="#">删除</a></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="margin:0 auto;">
+                                {{ $navlist->links() }}
                             </div>
                         </div>
-
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header border border-top-0 border-right-0 border-left-0">
-                            Card Divded Header
-                        </div>
-
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header bg-light">
-                            Light Card
-                        </div>
-
-                        <div class="card-body bg-light">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-primary">
-                            Primary Card
-                        </div>
-
-                        <div class="card-body bg-primary">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-info">
-                            Info Card
-                        </div>
-
-                        <div class="card-body bg-info">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-danger">
-                            Danger Card
-                        </div>
-
-                        <div class="card-body bg-danger">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-success">
-                            Success Card
-                        </div>
-
-                        <div class="card-body bg-success">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-warning">
-                            Warning Card
-                        </div>
-
-                        <div class="card-body bg-warning">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card text-white border-0">
-                        <div class="card-header bg-dark">
-                            Dark Card
-                        </div>
-
-                        <div class="card-body bg-dark">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
 @endsection

@@ -12,7 +12,12 @@ class LoginController extends Controller{
      * 登录页面
      * */
     public function login(Request $request){
-         return view('Admin/Login/login');
+        $admin_id = $request->session()->get('admin_id');
+        if($admin_id){
+            return redirect('/admin/index');
+        }else{
+            return view('Admin/Login/login');
+        }
     }
 
     /**
