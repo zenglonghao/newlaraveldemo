@@ -7,10 +7,12 @@ if(! function_exists('show_ueditor')){
      * $ueditor  编辑器id 默认值为 ueditor
      * $name 编辑器区域名称
      * $content 编辑器内容 默认为空
+     * $width 编辑器的宽度
+     * $height 编辑器的高度
      */
-    function show_ueditor($ueditor='ueditor',$name='content',$content= ''){
+    function show_ueditor($ueditor='ueditor',$name='content',$content= '',$width=600,$height=300){
         $str = '';
-        $str .= '<script id="'.$ueditor.'" name="'.$name.'" type="text/plain" style="width:100%px;height:300px;">'.$content.'</script>';
+        $str .= '<script id="'.$ueditor.'" name="'.$name.'" type="text/plain" style="width:'.$width.'px;height:'.$height.'px;">'.$content.'</script>';
 
         $str .= '<script type="text/javascript" charset="utf-8" src="'.asset('lib/utf8-php/ueditor.config.js').'"></script>';
         $str .= '<script type="text/javascript" charset="utf-8" src="'.asset('lib/utf8-php/ueditor.all.min.js').'"> </script>';

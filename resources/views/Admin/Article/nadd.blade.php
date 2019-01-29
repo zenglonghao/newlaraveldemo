@@ -13,7 +13,7 @@
                                     <div class="form-group">
                                         <label for="normal-input" class="form-control-label">分类名称</label>
                                         <br/>
-                                        {!! show_ueditor('editor','content','') !!}
+                                        {!! show_ueditor() !!}
                                     </div>
                                 </div>
                             </div>
