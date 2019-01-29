@@ -42,6 +42,8 @@ Route::get('/admin/article_type/update/{id}','Admin\ArticleTypeController@nupdat
 Route::post('/admin/article_type/UpSave/{id}','Admin\ArticleTypeController@nUpSave')->middleware('adminuser');
 Route::get('/admin/article_type/detele/{id}','Admin\ArticleTypeController@ndetele')->middleware('adminuser');
 
+Route::get('/admin/article/add','Admin\ArticleController@nadd')->middleware('adminuser');
+
 
 
 

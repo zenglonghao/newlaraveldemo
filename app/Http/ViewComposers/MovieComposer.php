@@ -46,6 +46,13 @@ class MovieComposer
                     array('name'=>'添加分类','href'=>'/admin/article_type/add','icon'=>'icon-target','class'=>''),
                 ),
             ),
+            array(
+                'name'=>'文章管理','href'=>'#','icon'=>'icon-target',
+                'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
+                'child'=>array(
+                    array('name'=>'添加文章','href'=>'/admin/article/add','icon'=>'icon-target','class'=>''),
+                ),
+            ),
         );
         return $_menu;
     }
