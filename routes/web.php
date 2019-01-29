@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 Route::get('user/{id}/{name}', function ($id, $name) {
     return '你好,user'.$id.'name='.$name;
-})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);*/
-//Route::redirect('/here', '/there');重定向
+})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
+//Route::redirect('/here', '/there');重定向*/
 
 Route::get('/login','Admin\LoginController@login');
 Route::post('/login/save','Admin\LoginController@save');
@@ -33,11 +33,14 @@ Route::get('/admin/navigation/add','Admin\NavigationController@nadd')->middlewar
 Route::post('/admin/navigation/save','Admin\NavigationController@nsave')->middleware('adminuser');
 Route::get('/admin/navigation/update/{id}','Admin\NavigationController@nupdate')->middleware('adminuser');
 Route::post('/admin/navigation/updateSave/{id}','Admin\NavigationController@nUpdateSave')->middleware('adminuser');
+Route::get('/admin/navigtion/nDelete/{id}','Admin\NavigationController@nDelete')->middleware('adminuser');
 
-Route::get('/404',function(){
-    return view('/errors/404');
-});
-
+Route::get('/admin/article_type/list','Admin\ArticleTypeController@nList')->middleware('adminuser');
+Route::get('/admin/article_type/add','Admin\ArticleTypeController@nadd')->middleware('adminuser');
+Route::post('/admin/article_type/save','Admin\ArticleTypeController@nsave')->middleware('adminuser');
+Route::get('/admin/article_type/update/{id}','Admin\ArticleTypeController@nupdate')->middleware('adminuser');
+Route::post('/admin/article_type/UpSave/{id}','Admin\ArticleTypeController@nUpSave')->middleware('adminuser');
+Route::get('/admin/article_type/detele/{id}','Admin\ArticleTypeController@ndetele')->middleware('adminuser');
 
 
 

@@ -37,7 +37,15 @@ class MovieComposer
                     array('name'=>'导航列表','href'=>'/admin/navigation/list','icon'=>'icon-target','class'=>''),
                     array('name'=>'添加导航','href'=>'/admin/navigation/add','icon'=>'icon-target','class'=>''),
                 )
-            )
+            ),
+            array(
+                'name'=>'文章分类','href'=>'#','icon'=>'icon-target',
+                'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
+                'child'=>array(
+                    array('name'=>'分类列表','href'=>'/admin/article_type/list','icon'=>'icon-target','class'=>''),
+                    array('name'=>'添加分类','href'=>'/admin/article_type/add','icon'=>'icon-target','class'=>''),
+                ),
+            ),
         );
         return $_menu;
     }

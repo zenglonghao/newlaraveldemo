@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('/js/admin/index/vendor/font-awesome/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/admin/index/styles.css')}}">
     <link rel="stylesheet" href="{{asset('css/admin/page.css')}}">
+    <script src="{{asset('/js/admin/index/vendor/jquery/jquery.min.js')}}"></script>
 </head>
 <body>
 <div class="page-wrapper">

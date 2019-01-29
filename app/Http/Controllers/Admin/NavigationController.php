@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 class NavigationController extends Controller{
     //导航列表
     public function nlist(Request $request){
-        //$navlist = DB::table('navigation')->where('nav_id',3)->orderBy('nav_sort','desc')->paginate(10);
-        $navlist = DB::table('navigation')->orderBy('nav_sort','desc')->paginate(1);
+        $navlist = DB::table('navigation')->orderBy('nav_sort','desc')->paginate(20);
         return view('Admin/Navigation/nlist',['navlist' => $navlist]);
     }
 
@@ -57,6 +56,19 @@ class NavigationController extends Controller{
             return view('message')->with(['message'=>'编辑失败','jumpTime'=>3,'url'=>'/admin/navigation/update/'.$id]);
         }
     }
+
+    //删除导航信息
+    public function nDelete($id){
+        $res = DB::table('navigation')->where('nav_id',$id)->delete();
+        if($res){
+            echo json_encode(array('code'=>200,'success'=>true,'message'=>'删除成功'));
+        }else{
+            echo json_encode(array('code'=>400,'success'=>false,'message'=>'删除失败'));
+        }
+    }
+
+
+
 
 
 }
