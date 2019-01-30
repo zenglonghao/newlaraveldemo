@@ -17,6 +17,12 @@ Route::get('/', function () {
 Route::get('/buttons',function(){
     return view('buttons');
 });
+Route::get('/l',function(){
+    return view('layui');
+});
+Route::get('/lr',function(){
+    return view('layuir');
+});
 //get的方式
 /*Route::get('foo/{id}',function($id){
     return '你好,foo'.$id;
@@ -46,7 +52,7 @@ Route::post('/admin/article_type/UpSave/{id}','Admin\ArticleTypeController@nUpSa
 Route::get('/admin/article_type/detele/{id}','Admin\ArticleTypeController@ndetele')->middleware('adminuser');
 
 Route::get('/admin/article/add','Admin\ArticleController@nadd')->middleware('adminuser');
-
+Route::post('/admin/article/save','Admin\ArticleController@nsave')->middleware('adminuser');
 
 
 

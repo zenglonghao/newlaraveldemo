@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{asset('css/admin/page.css')}}">
     <link rel="stylesheet" href="{{ asset('/css/buttons.css') }}">
     <script src="{{asset('/js/admin/index/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('/layui/layui.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('/layui/css/layui.css') }}">
 </head>
 <body>
 <div class="page-wrapper">

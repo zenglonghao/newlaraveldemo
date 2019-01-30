@@ -27,3 +27,18 @@ if(! function_exists('show_ueditor')){
     }
 }
 
+/**
+ *打印数组
+ * @param $array 打印的数组
+ * $param $error 是否终止
+ * */
+function per($array=array(),$error=0){
+    echo '<pre>';
+    print_R($array);
+    echo '</pre>';
+    if(empty($error)){
+        die();
+    }
+}
+
+
