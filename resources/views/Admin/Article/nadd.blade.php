@@ -86,7 +86,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">允许评论</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" name="article_commend_flag" lay-skin="switch">
+                                    <input type="checkbox" name="article_comment_flag" lay-skin="switch">
                                 </div>
                             </div>
 
