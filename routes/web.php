@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/buttons',function(){
+    return view('buttons');
+});
 //get的方式
 /*Route::get('foo/{id}',function($id){
     return '你好,foo'.$id;
