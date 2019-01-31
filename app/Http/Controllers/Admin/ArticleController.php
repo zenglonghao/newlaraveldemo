@@ -22,7 +22,6 @@ class ArticleController extends Controller{
     public function nsave(Request $request){
         $post = $_POST;
         $insert_data = array();
-        //per($post);
         $insert_data['article_title'] = $post['article_title'];
         $insert_data['article_class_id'] = $post['article_class_id'];
         $insert_data['article_origin'] = $post['article_origin'];
@@ -37,8 +36,13 @@ class ArticleController extends Controller{
         $insert_data['article_commend_flag'] = isset($post['article_commend_flag'])?1:0;
         $insert_data['article_comment_flag'] = isset($post['article_comment_flag'])?1:0;
         $images = $request->file('article_image');
-        $article_image = $this->AUpload($images);
-        $insert_data['article_image'] = $article_image;
+        if(!empty($images)){
+            $article_image = $this->AUpload($images);
+            $insert_data['article_image'] = $article_image;
+        }else{
+            $insert_data['article_image'] = '';
+        }
+
         $res =  DB::table('article')->insert($insert_data);
         if($res){
             return view('message')->with(['message'=>'操作成功','jumpTime'=>3,'url'=>'/admin/article/add']);
@@ -63,6 +67,46 @@ class ArticleController extends Controller{
         }else{
             return '';
         }
+    }
+
+
+    /**
+     * 文章列表
+     * */
+    public function nlist(){
+        $field = $this->AField();
+        $article = DB::table('article')->select($field)->orderBy('article_sort','desc')->paginate(20);
+        $articlenew = array();
+        if(!empty($article)){
+            foreach($article as $k=>$v){
+                $starttime = date('Y-m-d',$v->article_start_time);
+                $endtime = date('Y-m-d',$v->article_end_time);
+                $article[$k]->article_publish_time = date('Y-m-d',$v->article_publish_time);
+                $article[$k]->article_time = $starttime.'~'.$endtime;
+            }
+        }
+        //echo json_encode($articlenew);die();
+        return view('Admin/Article/nlist',['article' => json_encode($article)]);
+    }
+
+
+    /**
+     * 文章列表显示的字段
+     * */
+    public function AField(){
+        $field = array();
+        $field[] = 'article_id';
+        $field[] = 'article_title';
+        $field[] = 'article_origin';
+        $field[] = 'article_class_id';
+        $field[] = 'article_author';
+        $field[] = 'article_start_time';
+        $field[] = 'article_end_time';
+        $field[] = 'article_publish_time';
+        $field[] = 'article_commend_flag';
+        $field[] = 'article_comment_flag';
+        $field[] = 'article_state';
+        return $field;
     }
 
 }

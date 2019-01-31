@@ -73,7 +73,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">文章排序</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="article_sort" required  lay-verify="required" placeholder="文章排序" autocomplete="off" class="layui-input">
+                                    <input type="text" name="article_sort" required  lay-verify="required" placeholder="文章排序" value="255" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
@@ -106,13 +106,19 @@
         //Demo
         layui.use('form', function(){
             var form = layui.form;
-
             //监听提交
             form.on('submit(formDemo)', function(data){
-                //JSON.stringify(data.field) //表单里填的数据
-                //console.log(JSON.stringify(data.field));
-                //layer.msg(JSON.stringify(data.field));
-               // return false;
+                var newdata = data.field; //表单里填的数据
+                var article_image = newdata.article_image;
+                var article_time = newdata.article_time;
+                if(!article_image){
+                    layer.msg('文章图片不能为空', {icon: 5});
+                    return false;
+                }
+                if(!article_time){
+                    layer.msg('文章有效时间不能为空',{icon: 5});
+                    return false;
+                }
             });
         });
 

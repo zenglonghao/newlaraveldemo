@@ -53,7 +53,7 @@ Route::get('/admin/article_type/detele/{id}','Admin\ArticleTypeController@ndetel
 
 Route::get('/admin/article/add','Admin\ArticleController@nadd')->middleware('adminuser');
 Route::post('/admin/article/save','Admin\ArticleController@nsave')->middleware('adminuser');
-
+Route::get('/admin/article/list','Admin\ArticleController@nlist')->middleware('adminuser');
 
 
 

@@ -42,15 +42,16 @@ class MovieComposer
                 'name'=>'文章分类','href'=>'#','icon'=>'icon-target',
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
-                    array('name'=>'分类列表','href'=>'/admin/article_type/list','icon'=>'icon-target','class'=>''),
-                    array('name'=>'添加分类','href'=>'/admin/article_type/add','icon'=>'icon-target','class'=>''),
+                    array('name'=>'分类列表','href'=>'/admin/article_type/list','icon'=>'layui-icon layui-icon-list','class'=>''),
+                    array('name'=>'添加分类','href'=>'/admin/article_type/add','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
                 ),
             ),
             array(
                 'name'=>'文章管理','href'=>'#','icon'=>'icon-target',
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
-                    array('name'=>'添加文章','href'=>'/admin/article/add','icon'=>'icon-target','class'=>''),
+                    array('name'=>'添加文章','href'=>'/admin/article/add','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
+                    array('name'=>'文章列表','href'=>'/admin/article/list','icon'=>'layui-icon layui-icon-list','class'=>''),
                 ),
             ),
         );
