@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller{
+    public $pagesize = 3;
 
     /**
      * 文章添加页面
@@ -74,9 +75,15 @@ class ArticleController extends Controller{
      * 文章列表
      * */
     public function nlist(){
+        return view('Admin/Article/nlist',['pagesize'=>$this->pagesize]);
+    }
+
+    /**
+     * 文章列表异步请求
+     * */
+    public function nAlist(){
         $field = $this->AField();
-        $article = DB::table('article')->select($field)->orderBy('article_sort','desc')->paginate(20);
-        $articlenew = array();
+        $article = DB::table('article')->select($field)->orderBy('article_sort','desc')->paginate($this->pagesize);
         if(!empty($article)){
             foreach($article as $k=>$v){
                 $starttime = date('Y-m-d',$v->article_start_time);
@@ -85,9 +92,11 @@ class ArticleController extends Controller{
                 $article[$k]->article_time = $starttime.'~'.$endtime;
             }
         }
-        //echo json_encode($articlenew);die();
-        return view('Admin/Article/nlist',['article' => json_encode($article)]);
+        $articlenew = $article->toArray();//将对象转换为数组
+        $array = array('code'=>0,'msg'=>'','count'=>$articlenew['total'],'data'=>$articlenew['data']);
+        echo json_encode($array);
     }
+
 
 
     /**
