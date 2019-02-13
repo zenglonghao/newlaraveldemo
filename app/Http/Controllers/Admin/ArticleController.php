@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller{
-    public $pagesize = 3;
+    public $pagesize = 10;
 
     /**
      * 文章添加页面
@@ -79,6 +79,14 @@ class ArticleController extends Controller{
     }
 
     /**
+     * 文章编辑
+     * */
+    public function nUpdate(){
+        return view('Admin/Article/nUpdate');
+    }
+
+
+    /**
      * 文章列表异步请求
      * */
     public function nAlist(){
@@ -97,6 +105,23 @@ class ArticleController extends Controller{
         echo json_encode($array);
     }
 
+    /**
+     * 文章状态请求
+     * */
+    public function Astate($state,$value,$id){
+        $update = array();
+        if($value == 'true'){
+            $update[$state] = 1;
+        }else{
+            $update[$state] = 0;
+        }
+        $res = DB::table('article')->where('article_id',$id)->update($update);
+        if($res){
+            echo json_encode(array('code'=>200,'msg'=>'操作成功','success'=>true));
+        }else{
+            echo json_encode(array('code'=>400,'msg'=>'操作失败','success'=>false));
+        }
+    }
 
 
     /**
