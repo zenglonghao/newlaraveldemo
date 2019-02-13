@@ -98,8 +98,7 @@
                 } else if(obj.event === 'edit'){
                     //layer.alert('编辑行：<br>'+ JSON.stringify(data));
                     //脚本编辑弹出层
-                    var name = encodeURIComponent(data.toolName);
-                    // console.log(data.toolName);
+                    var id = encodeURIComponent(data.article_id);
                     layer.open({
                         type: 2,
                         title: '编辑文章信息',
@@ -107,7 +106,7 @@
                         shade: 0.8,
                         maxmin: true,
                         area: ['70%', '70%'],
-                        content: '/admin/article/update',//设置你要弹出的jsp页面
+                        content: '/admin/article/update/'+id,//设置你要弹出的jsp页面
                         success: function(layero, index){
                             var body = layer.getChildFrame('body', index);
                             var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
@@ -117,6 +116,7 @@
                             }
                         }
                     });
+
                 }
             });
 

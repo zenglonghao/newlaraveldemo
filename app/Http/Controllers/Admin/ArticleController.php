@@ -58,7 +58,7 @@ class ArticleController extends Controller{
      * */
     public function AUpload($images){
         $time = date('Y/m/d',time());
-        $filedir="images/admin/article/".$time; //2、定义图片上传路径
+        $filedir="images/admin/article/".$time.'/'; //2、定义图片上传路径
         $imagesName=$images->getClientOriginalName(); //3、获取上传图片的文件名
         $extension = $images -> getClientOriginalExtension(); //4、获取上传图片的后缀名
         $newImagesName=md5(time()).random_int(5,5).".".$extension;//5、重新命名上传文件名
@@ -81,8 +81,13 @@ class ArticleController extends Controller{
     /**
      * 文章编辑
      * */
-    public function nUpdate(){
-        return view('Admin/Article/nUpdate');
+    public function nUpdate($id){
+        $article = DB::table('article')->where('article_id',$id)->first();
+        $article_class = DB::table('article_class')->where('ac_parent_id',0)->orderBy('ac_sort','desc')->get();
+        $starte_time = date('Y-m-d',$article->article_start_time);
+        $end_time = date('Y-m-d',$article->article_end_time);
+        $article->article_time = $starte_time.'~'.$end_time;
+        return view('Admin/Article/nUpdate',['article'=>$article,'article_class' => $article_class]);
     }
 
 
