@@ -6,6 +6,7 @@
 </head>
 <body>
 <form class="layui-form" action="">
+    {{ csrf_field() }}
     <div class="layui-form-item">
         <label class="layui-form-label">文章标题</label>
         <div class="layui-input-block">
@@ -77,16 +78,35 @@
 </form>
 </body>
 <script>
-    //Demo
-    layui.use('form', function(){
-        var form = layui.form;
+    var article_id = "{{ $article->article_id }}";
+    layui.use(['form', 'layedit'] ,function(){
+        var $ = layui.jquery
+                ,form = layui.form
+                ,layer = layui.layer
+                ,layedit = layui.layedit;
+        var index = parent.layer.getFrameIndex(window.name); //修改成功的时候点击 确定 会关闭子窗口，这里获取一下子窗口
+        form.render();
         //监听提交
-        form.on('submit(formDemo)', function(data){
-            var newdata = data.field; //表单里填的数据
-            var article_image = newdata.article_image;
-            var article_time = newdata.article_time;
-           
+        form.on('submit(formDemo)', function(data){ //这块要跟表单中的lay-filter="editStudent"对应
+            $.ajax({
+                url: "/admin/article/updateSave/"+article_id,
+                type: "post",
+                data: data.field,
+                dataType: "json",
+                success: function (data) {
+                    /*if(data.msg!='0'){
+                        layer.alert("修改成功",{icon: 1,time:2000},function () {
+                            layer.close(layer.index);
+                            window.parent.location.reload();    //重新加载父页面，进行数据刷新
+                        });
+                    } else{
+                        layer.alert("修改失败",{icon: 2,time:2000});
+                    }*/
+                }
+            });
+            return false;
         });
+
     });
 
     layui.use('laydate', function(){

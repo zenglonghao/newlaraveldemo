@@ -110,10 +110,6 @@
                         success: function(layero, index){
                             var body = layer.getChildFrame('body', index);
                             var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-                            var inputList = body.find("input");//获取到子窗口的所有的input标签
-                            for (var i = 0; i < inputList.length; i++ ) {
-                                $(inputList[i]).val(editList[i]); //遍历子窗口的input标签，将之前数组中的值一次放入显示
-                            }
                         }
                     });
 

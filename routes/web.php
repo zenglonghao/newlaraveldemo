@@ -57,5 +57,5 @@ Route::get('/admin/article/list','Admin\ArticleController@nlist')->middleware('a
 Route::get('/admin/article/Alist','Admin\ArticleController@nAlist')->middleware('adminuser');
 Route::get('/admin/article/Astate/{state}/{value}/{id}','Admin\ArticleController@Astate')->middleware('adminuser');
 Route::get('/admin/article/update/{id}','Admin\ArticleController@nUpdate')->middleware('adminuser');
-
+Route::match(['get','post'],'/admin/article/updateSave/{id}','Admin\ArticleController@nUpdateSave')->middleware('adminuser');
 

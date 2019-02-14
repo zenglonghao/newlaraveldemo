@@ -92,6 +92,31 @@ class ArticleController extends Controller{
 
 
     /**
+     * 文章编辑保存
+     * */
+    public function nUpdateSave($id){
+       $updateArray = array();
+       $post = $_POST;
+        $updateArray['article_title'] = $post['article_title'];
+        $updateArray['article_class_id'] = $post['article_class_id'];
+        $updateArray['article_origin'] = $post['article_origin'];
+        $updateArray['article_author'] = $post['article_author'];
+        $updateArray['article_abstract'] = $post['article_abstract'];
+        $updateArray['article_sort'] = $post['article_sort'];
+        $updateArray['article_content'] = $post['article_content'];
+        $article_time = explode('~',$post['article_time']);
+        $updateArray['article_start_time'] = strtotime($article_time[0]);
+        $updateArray['article_end_time'] = strtotime($article_time[1]);
+        $res = DB::table('article')->where('article_id',$id)->update($updateArray);
+        if($res){
+            echo json_encode(array('code'=>200));
+        }else{
+            echo json_encode(array('code'=>400));
+        }
+    }
+
+
+    /**
      * 文章列表异步请求
      * */
     public function nAlist(){
