@@ -6,6 +6,13 @@
                     <div class="card">
                         <div class="card-header bg-light">文章列表</div>
                         <div class="card-body">
+                            <div class="demoTable">
+                                搜索作者：
+                                <div class="layui-inline">
+                                    <input class="layui-input" name="keyword" id="demoReload" autocomplete="off" style="width:100%">
+                                </div>
+                                <button class="layui-btn" data-type="reload">搜索</button>
+                            </div>
                             <!--方法渲染-->
                             <table class="layui-hide" id="demo" lay-filter="demo" ></table>
                         </div>
@@ -37,9 +44,9 @@
                 ,limits : [limit]///每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]。
                 ,cols: [[ //标题栏
                     {field: 'article_id', title: '编号', sort: true}
-                    ,{field: 'article_title', title: '文章标题'}
-                    ,{field: 'article_class_id', title: '分类编号'}
-                    ,{field: 'article_author', title: '文章作者'}
+                    ,{field: 'article_title', title: '标题'}
+                    ,{field: 'ac_name', title: '分类'}
+                    ,{field: 'article_author', title: '作者'}
                     ,{field: 'article_time', title: '有效期',width:200}
                     ,{field: 'article_publish_time', title: '发布时间'}
                     ,{field: 'article_commend_flag', title: '推荐', unresize: true ,
@@ -85,6 +92,23 @@
 
                 }
             });
+            //条件筛选
+            var $ = layui.$, active = {
+                reload: function(){
+                    var demoReload = $('#demoReload');
+                    table.reload('demo', {
+                        where: {
+                            keyword: demoReload.val()
+                        }
+                    });
+                }
+            };
+            //绑定搜索按钮
+            $('.demoTable .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
             //监听工具条
             table.on('tool(demo)', function(obj){
                 var data = obj.data;
@@ -92,11 +116,26 @@
                     layer.msg('ID：'+ data.article_id + ' 的查看操作');
                 } else if(obj.event === 'del'){
                     layer.confirm('真的删除行么', function(index){
-                        obj.del();
-                        layer.close(index);
+                        var id = encodeURIComponent(data.article_id);
+                        //删除文章
+                        $.ajax({
+                           type:'get',
+                            url:'/admin/article/ndelete/'+id,
+                            data:{},
+                            dataType:'json',
+                            success:function(res){
+                                if(res.code == 200){
+                                    layer.alert(res.message,{icon: 1,time:2000},function () {
+                                        obj.del();
+                                        layer.close(index);
+                                    });
+                                }else{
+                                    layer.alert(res.message,{icon: 1,time:2000},function () {});
+                                }
+                            }
+                        });
                     });
                 } else if(obj.event === 'edit'){
-                    //layer.alert('编辑行：<br>'+ JSON.stringify(data));
                     //脚本编辑弹出层
                     var id = encodeURIComponent(data.article_id);
                     layer.open({
@@ -110,16 +149,15 @@
                         success: function(layero, index){
                             var body = layer.getChildFrame('body', index);
                             var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+
                         }
                     });
-
                 }
             });
 
             //监听input
             form.on('switch(sinput)', function(obj){
                 var id = obj.elem.getAttribute("data");
-               // console.log(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
                 //接口改变状态
                 $.ajax({
                     type:'get',
@@ -136,7 +174,5 @@
                 });
             });
         });
-
-
     </script>
 @endsection

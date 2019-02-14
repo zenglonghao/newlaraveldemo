@@ -87,7 +87,8 @@ class ArticleController extends Controller{
         $starte_time = date('Y-m-d',$article->article_start_time);
         $end_time = date('Y-m-d',$article->article_end_time);
         $article->article_time = $starte_time.'~'.$end_time;
-        return view('Admin/Article/nUpdate',['article'=>$article,'article_class' => $article_class]);
+        $time = date('Y-m-d',time());
+        return view('Admin/Article/nUpdate',['article'=>$article,'article_class' => $article_class,'time'=>$time]);
     }
 
 
@@ -109,9 +110,9 @@ class ArticleController extends Controller{
         $updateArray['article_end_time'] = strtotime($article_time[1]);
         $res = DB::table('article')->where('article_id',$id)->update($updateArray);
         if($res){
-            echo json_encode(array('code'=>200));
+            echo json_encode(array('code'=>200,'message'=>'操作成功','success'=>true));
         }else{
-            echo json_encode(array('code'=>400));
+            echo json_encode(array('code'=>400,'message'=>'操作失败','success'=>false));
         }
     }
 
@@ -121,7 +122,11 @@ class ArticleController extends Controller{
      * */
     public function nAlist(){
         $field = $this->AField();
-        $article = DB::table('article')->select($field)->orderBy('article_sort','desc')->paginate($this->pagesize);
+        $where = array();
+        if(isset($_GET['keyword'])){
+            $where['article_author'] = $_GET['keyword'];
+        }
+        $article = DB::table('article')->select($field)->where($where)->leftjoin('article_class','article.article_class_id','=','article_class.ac_id')->orderBy('article_id','asc')->paginate($this->pagesize);
         if(!empty($article)){
             foreach($article as $k=>$v){
                 $starttime = date('Y-m-d',$v->article_start_time);
@@ -170,7 +175,21 @@ class ArticleController extends Controller{
         $field[] = 'article_commend_flag';
         $field[] = 'article_comment_flag';
         $field[] = 'article_state';
+        $field[] = 'ac_name';
         return $field;
     }
 
+
+    /**
+     * 文章删除接口
+     *
+     * */
+    public function ndelete($id){
+        $res = DB::table('article')->where('article_id',$id)->delete();
+        if($res){
+            echo json_encode(array('code'=>200,'success'=>true,'message'=>'删除成功'));
+        }else{
+            echo json_encode(array('code'=>400,'success'=>false,'message'=>'删除失败'));
+        }
+    }
 }

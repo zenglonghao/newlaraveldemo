@@ -18,9 +18,8 @@
         <div class="layui-input-block">
             <select name="article_class_id" lay-verify="required">
                 <option value="0">--请选择--</option>
-                <option value="1" selected = "selected" >555</option>
                 @foreach($article_class as $v)
-                    <option value="{{ $v->ac_id }}">{{ $v->ac_name }}</option>
+                    <option value="{{ $v->ac_id }}" <?php if($v->ac_id == $article->article_class_id){ echo 'selected = "selected"';}?> >{{ $v->ac_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -79,6 +78,7 @@
 </body>
 <script>
     var article_id = "{{ $article->article_id }}";
+    var newstime = "{{ $time }}";
     layui.use(['form', 'layedit'] ,function(){
         var $ = layui.jquery
                 ,form = layui.form
@@ -88,20 +88,20 @@
         form.render();
         //监听提交
         form.on('submit(formDemo)', function(data){ //这块要跟表单中的lay-filter="editStudent"对应
-            $.ajax({
+           $.ajax({
                 url: "/admin/article/updateSave/"+article_id,
                 type: "post",
                 data: data.field,
                 dataType: "json",
                 success: function (data) {
-                    /*if(data.msg!='0'){
-                        layer.alert("修改成功",{icon: 1,time:2000},function () {
+                    if(data.code == 200){
+                        parent.layer.alert(data.message,{icon: 1,time:2000},function () {
                             layer.close(layer.index);
                             window.parent.location.reload();    //重新加载父页面，进行数据刷新
                         });
                     } else{
-                        layer.alert("修改失败",{icon: 2,time:2000});
-                    }*/
+                        parent.layer.alert(data.message,{icon: 2,time:2000});
+                    }
                 }
             });
             return false;
@@ -111,14 +111,13 @@
 
     layui.use('laydate', function(){
         var laydate = layui.laydate;
-
         //执行一个laydate实例
         laydate.render({
             elem: '#test1', //指定元素
             type:'date', //year=>年，month=>月，date=>日期（年月日）(默认) ，time=>时间(时，分，秒)，datetime=>日期时间选择器(可选择：年、月、日、时、分、秒)
             range: '~',//来自定义分割字符
             //value: '2017-09-10',//默认值
-            min:'2019-01-30'//最小
+            min:newstime//最小
             //max:'2019-02-15',//最大
             // trigger: 'click'//如果绑定的元素非输入框，则默认事件为：click
         });
