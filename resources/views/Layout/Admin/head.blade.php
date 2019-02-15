@@ -13,6 +13,7 @@
     <script src="{{asset('/js/admin/index/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('/layui/layui.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/layui/css/layui.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 <div class="page-wrapper">
@@ -56,7 +57,7 @@
                     <a href="#" class="dropdown-item">
                         <i class="fa fa-bell"></i> Notifications
                     </a>
-                    <a href="#" class="dropdown-item">
+                    <a href="/admin/setting" class="dropdown-item">
                         <i class="fa fa-wrench"></i>个人设置
                     </a>
                     <a href="/login/logout" class="dropdown-item">

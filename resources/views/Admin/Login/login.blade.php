@@ -38,7 +38,7 @@
         {{ csrf_field() }}
         <input type="text" class="text" value="Username" name="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
         <div class="key">
-            <input type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <input type="password"  name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
         </div>
     <div class="signin">
         <input type="submit" value="Login" >

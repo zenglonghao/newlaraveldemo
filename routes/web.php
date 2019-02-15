@@ -59,3 +59,6 @@ Route::get('/admin/article/Astate/{state}/{value}/{id}','Admin\ArticleController
 Route::get('/admin/article/update/{id}','Admin\ArticleController@nUpdate')->middleware('adminuser');
 Route::match(['get','post'],'/admin/article/updateSave/{id}','Admin\ArticleController@nUpdateSave')->middleware('adminuser');
 Route::get('/admin/article/ndelete/{id}','Admin\ArticleController@ndelete')->middleware('adminuser');
+
+Route::get('/admin/setting','Admin\SettingController@nset')->middleware('adminuser');
+Route::match(['get','post'],'/admin/setting/nupload','Admin\SettingController@nupload')->middleware('adminuser');
