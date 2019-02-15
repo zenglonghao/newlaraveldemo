@@ -62,3 +62,10 @@ Route::get('/admin/article/ndelete/{id}','Admin\ArticleController@ndelete')->mid
 
 Route::get('/admin/setting','Admin\SettingController@nset')->middleware('adminuser');
 Route::match(['get','post'],'/admin/setting/nupload','Admin\SettingController@nupload')->middleware('adminuser');
+Route::post('/admin/setting/save','Admin\SettingController@nSave')->middleware('adminuser');
+Route::get('/admin/make','Admin\SettingController@nMake')->middleware('adminuser');
+
+
+
+
+

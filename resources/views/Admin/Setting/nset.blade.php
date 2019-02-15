@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="" method="post">
+                <form action="/admin/setting/save" class="layui-form" method="post">
                     {{ csrf_field() }}
                     <div class="card">
                         <div class="card-header bg-light">个人信息编辑</div>
@@ -11,7 +11,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">账号名称</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="admin_name" required  lay-verify="required" placeholder="账号名称" autocomplete="off" class="layui-input">
+                                    <input type="text" name="admin_name" required  lay-verify="required" value="{{ $admin_user->admin_name }}" placeholder="账号名称" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
@@ -20,16 +20,17 @@
                                 <div class="layui-input-block">
                                     <button type="button" class="layui-btn" id="test1">上传图片</button>
                                     <div class="layui-upload-list">
-                                        <img class="layui-upload-img" id="demo1" style="width:50px;height:50px;">
+                                        <img class="layui-upload-img" id="demo1" style="width:50px;height:50px;" src="{{ $admin_user->admin_avatar }}">
                                         <p id="demoText"></p>
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="" name="admin_avatar">
+                            <input type="hidden" value="{{ $admin_user->admin_avatar }}" name="admin_avatar" id="avatar">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">密码</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="admin_password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                                    <input type="text" name="admin_password"  placeholder="密码" autocomplete="off" class="layui-input">
+                                    <span style="font-size: 10px;color:#FF7575;">密码为空的话,不改变以前的密码</span>
                                 </div>
                             </div>
 
@@ -62,11 +63,13 @@
                     });
                 }
                 ,done: function(res){
-                    //如果上传失败
-                    if(res.code > 0){
+                    if(res.code == 200){
+                        $('#avatar').val(res.route);
+                        return layer.msg('上传成功');
+                    }else{
                         return layer.msg('上传失败');
                     }
-                    //上传成功
+
                 }
                 ,error: function(){
                     //演示失败状态，并实现重传
