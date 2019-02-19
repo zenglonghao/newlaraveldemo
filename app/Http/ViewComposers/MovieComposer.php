@@ -31,6 +31,13 @@ class MovieComposer
         $_menu['Navigation'] = array(
             array('name'=>'首页','href'=>'/admin/index','icon'=>'icon-speedometer','class'=>'','child'=>array(),'nav-link'=>''),
             array(
+                'name'=>'管理','href'=>'#','icon'=>'layui-icon layui-icon-website',
+                'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
+                'child'=>array(
+                    array('name'=>'站点设置','href'=>'/admin/Manage/set','icon'=>'layui-icon layui-icon-set','class'=>''),
+                )
+            ),
+            array(
                 'name'=>'导航','href'=>'#','icon'=>'icon-target',
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
@@ -52,6 +59,13 @@ class MovieComposer
                 'child'=>array(
                     array('name'=>'添加文章','href'=>'/admin/article/add','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
                     array('name'=>'文章列表','href'=>'/admin/article/list','icon'=>'layui-icon layui-icon-list','class'=>''),
+                ),
+            ),
+            array(
+                'name'=>'评论','href'=>'#','icon'=>'layui-icon layui-icon-notice',
+                'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
+                'child'=>array(
+                    array('name'=>'评论管理','href'=>'','icon'=>'layui-icon layui-icon-form','class'=>''),
                 ),
             ),
         );

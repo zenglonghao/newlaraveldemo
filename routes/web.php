@@ -66,6 +66,9 @@ Route::post('/admin/setting/save','Admin\SettingController@nSave')->middleware('
 Route::get('/admin/make','Admin\SettingController@nMake')->middleware('adminuser');
 
 
+Route::get('/admin/Manage/set','Admin\ManageController@nset')->middleware('adminuser');
+Route::post('/admin/Manage/save','Admin\ManageController@nsave')->middleware('adminuser');
+
 
 
 

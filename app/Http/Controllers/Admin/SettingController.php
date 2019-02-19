@@ -10,7 +10,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class SettingController extends Controller{
 
 
-    public $img_route = '/images/admin/avatar';
+    public $img_route = 'images/admin/avatar/';
 
     // 只允许以下后缀名的图片文件上传
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
@@ -58,17 +58,20 @@ class SettingController extends Controller{
 
         // finally we save the image as a new file
         $res = $img->save('images/admin/avatar/2.png');//保存图片
-
     }
 
     /**
      * 上传头像
      * */
     public function nupload(Request $request){
-        $images = $request->file('file');
-        if(!empty($images)){
-            $avatar = $this->AUpload($images);
-            echo json_encode(array('code'=>'200','message'=>'上传成功','route'=>$avatar));
+        $files = $_FILES['file'];
+        if(!empty($files)){
+            $extension = explode('.',$files['name'])[1];
+            $img = Image::make($files['tmp_name']);//打开图片资源
+            $img->resize(100, 100);//压缩成大小
+            $route = $this->img_route.md5(time()).random_int(5,5).".".$extension;
+            $res = $img->save($route);//保存图片
+            echo json_encode(array('code'=>'200','message'=>'上传成功','route'=>'/'.$route));
         }else{
             echo json_encode(array('code'=>'400','message'=>'上传失败','route'=>''));
         }

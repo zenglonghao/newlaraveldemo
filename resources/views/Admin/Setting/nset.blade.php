@@ -20,7 +20,7 @@
                                 <div class="layui-input-block">
                                     <button type="button" class="layui-btn" id="test1">上传图片</button>
                                     <div class="layui-upload-list">
-                                        <img class="layui-upload-img" id="demo1" style="width:50px;height:50px;" src="{{ $admin_user->admin_avatar }}">
+                                        <img class="layui-upload-img" id="demo1" style="width:100px;height:100px;" src="{{ $admin_user->admin_avatar }}">
                                         <p id="demoText"></p>
                                     </div>
                                 </div>

@@ -13,7 +13,7 @@ class ArticleController extends Controller{
      * 文章添加页面
      * */
     public function nadd(){
-       $article_class = DB::table('article_class')->where('ac_parent_id',0)->orderBy('ac_sort','desc')->get();
+        $article_class = DB::table('article_class')->where('ac_parent_id',0)->orderBy('ac_sort','desc')->get();
         return view('Admin/Article/nadd',['article_class' => $article_class]);
     }
 
