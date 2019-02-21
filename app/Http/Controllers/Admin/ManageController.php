@@ -1,12 +1,9 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Cache;
-
+use Illuminate\Support\Facades\Redis as Redis;
 //管理
 class ManageController extends Controller{
 
@@ -17,8 +14,21 @@ class ManageController extends Controller{
         $set = DB::table('setting')->get();
         $setArray = $set->toArray();
         //缓存菜单数据
-       Cache::forever(config('admin.globals.cache.setList'), $setArray);
-        return view('Admin/Manage/nset');
+        // Redis::set('setarray',json_encode($setArray));//存入
+        // Redis::del('setarray');//删除
+        //Redis::get('setarray'); //读取
+        //Redis::exists('setarray') //是否存在
+      // redis::command('keys',['*']);//获取所有redis的键
+        $newsArray = array();
+        foreach($setArray as $k=>$v){
+            $newsArray[$v->name] = $v->value;
+        }
+        foreach($this->getTimeZone() as $k=>$v){
+            if($v == $newsArray['time_zone']){
+                $newsArray['time_zone_id'] = $k;
+            }
+        }
+       return view('Admin/Manage/nset',['setArray'=>$newsArray]);
     }
 
 
@@ -106,4 +116,46 @@ class ManageController extends Controller{
             '12' => 'Pacific/Auckland'
         );
     }
+
+    /**
+     * 网站缓存清理
+     * */
+    public function ncache(){
+        return view('Admin/Manage/ncache');
+    }
+
+    /**
+     * 清除缓存redis ,页面缓存
+     * */
+    public function ncacheSave(){
+        $post = $_POST;
+        if(isset($post['cache'])){
+            $cache = $post['cache'];
+            //清除Redis缓存
+            if(isset($cache[1])){
+                $this->cacheRedis();
+            }
+        }
+        echo json_encode(array('code'=>200,'success'=>true,'message'=>'清除缓存成功'));
+    }
+
+    /**
+     * 清除网站的Redis缓存
+     * */
+    private function cacheRedis(){
+       $Redis =  redis::command('keys',['*']);
+       if(!empty($Redis)){
+           foreach($Redis as $k=>$v){
+               Redis::del($v);
+           }
+       }
+    }
+
+
+
+
+
+
+
+
 }

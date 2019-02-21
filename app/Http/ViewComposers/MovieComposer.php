@@ -35,6 +35,7 @@ class MovieComposer
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
                     array('name'=>'站点设置','href'=>'/admin/Manage/set','icon'=>'layui-icon layui-icon-set','class'=>''),
+                    array('name'=>'清除缓存','href'=>'/admin/Manage/cache','icon'=>'layui-icon layui-icon-refresh','class'=>''),
                 )
             ),
             array(
@@ -65,7 +66,14 @@ class MovieComposer
                 'name'=>'评论','href'=>'#','icon'=>'layui-icon layui-icon-notice',
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
-                    array('name'=>'评论管理','href'=>'','icon'=>'layui-icon layui-icon-form','class'=>''),
+                    array('name'=>'评论管理','href'=>'#','icon'=>'layui-icon layui-icon-form','class'=>''),
+                ),
+            ),
+            array(
+                'name'=>'广告管理','href'=>'#','icon'=>'layui-icon layui-icon-website',
+                'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
+                'child'=>array(
+                    array('name'=>'添加广告','href'=>'','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
                 ),
             ),
         );

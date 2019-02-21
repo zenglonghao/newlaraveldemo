@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,14 +42,12 @@ Route::post('/admin/navigation/save','Admin\NavigationController@nsave')->middle
 Route::get('/admin/navigation/update/{id}','Admin\NavigationController@nupdate')->middleware('adminuser');
 Route::post('/admin/navigation/updateSave/{id}','Admin\NavigationController@nUpdateSave')->middleware('adminuser');
 Route::get('/admin/navigtion/nDelete/{id}','Admin\NavigationController@nDelete')->middleware('adminuser');
-
 Route::get('/admin/article_type/list','Admin\ArticleTypeController@nList')->middleware('adminuser');
 Route::get('/admin/article_type/add','Admin\ArticleTypeController@nadd')->middleware('adminuser');
 Route::post('/admin/article_type/save','Admin\ArticleTypeController@nsave')->middleware('adminuser');
 Route::get('/admin/article_type/update/{id}','Admin\ArticleTypeController@nupdate')->middleware('adminuser');
 Route::post('/admin/article_type/UpSave/{id}','Admin\ArticleTypeController@nUpSave')->middleware('adminuser');
 Route::get('/admin/article_type/detele/{id}','Admin\ArticleTypeController@ndetele')->middleware('adminuser');
-
 Route::get('/admin/article/add','Admin\ArticleController@nadd')->middleware('adminuser');
 Route::post('/admin/article/save','Admin\ArticleController@nsave')->middleware('adminuser');
 Route::get('/admin/article/list','Admin\ArticleController@nlist')->middleware('adminuser');
@@ -59,16 +56,13 @@ Route::get('/admin/article/Astate/{state}/{value}/{id}','Admin\ArticleController
 Route::get('/admin/article/update/{id}','Admin\ArticleController@nUpdate')->middleware('adminuser');
 Route::match(['get','post'],'/admin/article/updateSave/{id}','Admin\ArticleController@nUpdateSave')->middleware('adminuser');
 Route::get('/admin/article/ndelete/{id}','Admin\ArticleController@ndelete')->middleware('adminuser');
-
 Route::get('/admin/setting','Admin\SettingController@nset')->middleware('adminuser');
 Route::match(['get','post'],'/admin/setting/nupload','Admin\SettingController@nupload')->middleware('adminuser');
 Route::post('/admin/setting/save','Admin\SettingController@nSave')->middleware('adminuser');
 Route::get('/admin/make','Admin\SettingController@nMake')->middleware('adminuser');
-
-
 Route::get('/admin/Manage/set','Admin\ManageController@nset')->middleware('adminuser');
 Route::post('/admin/Manage/save','Admin\ManageController@nsave')->middleware('adminuser');
-
-
+Route::get('/admin/Manage/cache','Admin\ManageController@ncache')->middleware('adminuser');
+Route::post('/admin/Manage/cacheSave','Admin\ManageController@ncacheSave')->middleware('adminuser');
 
 

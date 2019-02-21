@@ -17,21 +17,21 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">网站名称</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="Wedsite_name" required  lay-verify="required" placeholder="网站名称" autocomplete="off" class="layui-input">
+                                    <input type="text" name="Wedsite_name" required  lay-verify="required" placeholder="网站名称" autocomplete="off" value="{{ $setArray['Wedsite_name'] }}" class="layui-input">
                                 </div>
                             </div>
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">版权信息</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="Copyright" required  lay-verify="required" placeholder="版权底部信息" autocomplete="off" class="layui-input">
+                                    <input type="text" name="Copyright" required  lay-verify="required" value="{{ $setArray['Copyright'] }}" placeholder="版权底部信息" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">网站时区</label>
                                 <div class="layui-input-block">
-                                    <select name="time_zone" class="tr" lay-verify="required" style="width:600px;">
+                                    <select name="time_zone" id="time_zone" class="tr" lay-verify="required" style="width:600px;">
                                         <option value="-12">(GMT -12:00) Eniwetok, Kwajalein</option>
                                         <option value="-11">(GMT -11:00) Midway Island, Samoa</option>
                                         <option value="-10">(GMT -10:00) Hawaii</option>
@@ -71,7 +71,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">ICP证书号</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="icp_number" required  lay-verify="required" placeholder="版权底部信息" autocomplete="off" class="layui-input">
+                                    <input type="text" name="icp_number"    placeholder="ICP证书号" value="{{ $setArray['icp_number'] }}" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
@@ -90,7 +90,10 @@
     </div>
     <script>
         //Demo
+        var data_id = "{{ $setArray['time_zone_id'] }}";
         layui.use('form', function(){
+            var select = 'dd[lay-value='+ data_id +']';
+            $('#time_zone').siblings("div.layui-form-select").find('dl').find(select).click();
             var form = layui.form;
             //监听提交
             form.on('submit(formDemo)', function(data){
