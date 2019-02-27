@@ -60,6 +60,7 @@ class MovieComposer
                 'child'=>array(
                     array('name'=>'添加文章','href'=>'/admin/article/add','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
                     array('name'=>'文章列表','href'=>'/admin/article/list','icon'=>'layui-icon layui-icon-list','class'=>''),
+                    array('name'=>'教程列表','href'=>'/admin/article/Courselist','icon'=>'layui-icon layui-icon-list','class'=>''),
                 ),
             ),
             array(

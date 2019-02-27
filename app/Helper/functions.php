@@ -30,7 +30,7 @@ if(! function_exists('show_ueditor')){
 /**
  *打印数组
  * @param $array 打印的数组
- * $param $error 是否终止
+ * @param $error 是否终止
  * */
 function per($array=array(),$error=0){
     echo '<pre>';
@@ -41,4 +41,23 @@ function per($array=array(),$error=0){
     }
 }
 
+/**
+ * 成功josn返回
+ * @code 状态
+ * @message 留言
+ * @data 数据
+ * */
+function success($data=array(),$code=200,$message=''){
+    exit(json_encode(array('code'=>$code,'message'=>$message,'data'=>$data,'success'=>true)));
+}
+
+/**
+ * 失败json返回
+ * @code 状态
+ * @message 留言
+ * @href
+ * */
+function error($code=400,$message='',$href=''){
+    exit(json_encode(array('code'=>$code,'message'=>$message,'href'=>$href,'success'=>false)));
+}
 

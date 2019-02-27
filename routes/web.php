@@ -52,6 +52,16 @@ Route::get('/admin/article/add','Admin\ArticleController@nadd')->middleware('adm
 Route::post('/admin/article/save','Admin\ArticleController@nsave')->middleware('adminuser');
 Route::get('/admin/article/list','Admin\ArticleController@nlist')->middleware('adminuser');
 Route::get('/admin/article/Alist','Admin\ArticleController@nAlist')->middleware('adminuser');
+
+Route::get('/admin/article/Courselist','Admin\ArticleController@nCourselist')->middleware('adminuser');
+Route::get('/admin/article/CourseAlist','Admin\ArticleController@nCourseAlist')->middleware('adminuser');
+Route::get('/admin/article/Courseadd','Admin\ArticleController@nCourseadd')->middleware('adminuser');
+Route::post('/admin/article/CourseSave','Admin\ArticleController@nCourseSave')->middleware('adminuser');
+Route::get('/admin/article/CourseClass/{id}','Admin\ArticleController@nCourseClass')->middleware('adminuser');
+Route::get('/admin/article/CourseUpdate/{id}','Admin\ArticleController@nCourseUpdate')->middleware('adminuser');
+Route::match(['get','post'],'/admin/article/CourseupdateSave/{id}','Admin\ArticleController@nCourseupdateSave')->middleware('adminuser');
+Route::get('/admin/article/Coursedelete/{id}','Admin\ArticleController@nCoursedelete')->middleware('adminuser');
+
 Route::get('/admin/article/Astate/{state}/{value}/{id}','Admin\ArticleController@Astate')->middleware('adminuser');
 Route::get('/admin/article/update/{id}','Admin\ArticleController@nUpdate')->middleware('adminuser');
 Route::match(['get','post'],'/admin/article/updateSave/{id}','Admin\ArticleController@nUpdateSave')->middleware('adminuser');
