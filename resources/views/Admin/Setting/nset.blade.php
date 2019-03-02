@@ -25,6 +25,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <input type="hidden" value="{{ $admin_user->admin_avatar }}" name="admin_avatar" id="avatar">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">密码</label>

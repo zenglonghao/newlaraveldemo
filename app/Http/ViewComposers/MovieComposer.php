@@ -74,7 +74,7 @@ class MovieComposer
                 'name'=>'广告管理','href'=>'#','icon'=>'layui-icon layui-icon-website',
                 'class'=>'nav-dropdown','nav-link'=>'nav-dropdown-toggle',
                 'child'=>array(
-                    array('name'=>'添加广告','href'=>'','icon'=>'layui-icon layui-icon-add-circle','class'=>''),
+                    array('name'=>'广告列表','href'=>'/admin/Adv/list','icon'=>'layui-icon layui-icon-list','class'=>''),
                 ),
             ),
         );

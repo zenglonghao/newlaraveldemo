@@ -75,4 +75,13 @@ Route::post('/admin/Manage/save','Admin\ManageController@nsave')->middleware('ad
 Route::get('/admin/Manage/cache','Admin\ManageController@ncache')->middleware('adminuser');
 Route::post('/admin/Manage/cacheSave','Admin\ManageController@ncacheSave')->middleware('adminuser');
 
+Route::get('/admin/Adv/list','Admin\AdvController@nlist')->middleware('adminuser');
+Route::get('/admin/Adv/padd','Admin\AdvController@npadd')->middleware('adminuser');
+Route::post('/admin/Adv/psave','Admin\AdvController@psave')->middleware('adminuser');
+Route::get('/admin/Adv/alist','Admin\AdvController@nalist')->middleware('adminuser');
+Route::get('/admin/Adv/astate/{state}/{value}/{id}','Admin\AdvController@nAstate')->middleware('adminuser');
+Route::get('/admin/Adv/Upadv/{id}','Admin\AdvController@nUpadv')->middleware('adminuser');
+Route::post('/admin/Adv/Upsave/{id}','Admin\AdvController@nUpsave')->middleware('adminuser');
+Route::get('/admin/Adv/add/{id}','Admin\AdvController@nadd')->middleware('adminuser');
+
 
