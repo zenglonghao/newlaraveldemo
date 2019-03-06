@@ -10,7 +10,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">广告内容描述</label>
         <div class="layui-input-block">
-            <input type="text" name="adv_title" required  lay-verify="required" placeholder="广告内容描述" autocomplete="off" class="layui-input">
+            <input type="text" name="adv_title" required  lay-verify="required" value="{{ $advInfo->adv_title }}" placeholder="广告内容描述" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -28,31 +28,31 @@
         <div class="layui-input-inline">
             <button type="button" class="layui-btn" id="test1">上传图片</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" style="width:100px;height:100px;" />
+                <img class="layui-upload-img" id="demo1" style="width:100px;height:100px;" src="{{ $advInfo->adv_content['adv_pic'] }}"/>
                 <p id="demoText"></p>
             </div>
         </div>
     </div>
-    <input type="hidden" value="" name="img_file" id="img_file">
+    <input type="hidden" value="{{ $advInfo->adv_content['adv_pic'] }}" name="img_file" id="img_file">
 
     <div class="layui-form-item">
         <label class="layui-form-label">广告连接</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="href"/>
+            <input type="text" class="layui-input" name="href" value="{{ $advInfo->adv_content['adv_pic_url'] }}"/>
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">有效时间</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" name="adv_time" id="time"/>
+            <input type="text" class="layui-input" name="adv_time" id="time" value="{{ $advInfo->adv_time }}" />
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">排序</label>
         <div class="layui-input-block">
-            <input type="text" name="slide_sort" required  lay-verify="required" value="255" placeholder="排序" autocomplete="off" class="layui-input">
+            <input type="text" name="slide_sort" required  lay-verify="required" value="{{ $advInfo->slide_sort }}" placeholder="排序" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -75,7 +75,7 @@
             elem: '#time', //指定元素
             type:'date', //year=>年，month=>月，date=>日期（年月日）(默认) ，time=>时间(时，分，秒)，datetime=>日期时间选择器(可选择：年、月、日、时、分、秒)
             range: '~',//来自定义分割字符
-           // value: '2017-09-10',//默认值
+            // value: '2017-09-10',//默认值
             min:min_time//最小
             //max:'2019-02-15',//最大
             // trigger: 'click'//如果绑定的元素非输入框，则默认事件为：click

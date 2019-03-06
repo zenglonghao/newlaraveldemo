@@ -171,6 +171,23 @@
 
                         }
                     });
+                } else if(obj.event === 'list'){
+                    //广告列表
+                    var id = encodeURIComponent(data.ap_id);
+                    layer.open({
+                        type: 2,
+                        title: '广告列表',
+                        shadeClose: true,
+                        shade: 0.8,
+                        maxmin: true,
+                        area: ['80%', '80%'],
+                        content: '/admin/Adv/Advlist/'+id,//设置你要弹出的jsp页面
+                        success: function(layero, index){
+                            var body = layer.getChildFrame('body', index);
+                            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+
+                        }
+                    });
                 }
             });
 

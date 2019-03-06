@@ -83,5 +83,13 @@ Route::get('/admin/Adv/astate/{state}/{value}/{id}','Admin\AdvController@nAstate
 Route::get('/admin/Adv/Upadv/{id}','Admin\AdvController@nUpadv')->middleware('adminuser');
 Route::post('/admin/Adv/Upsave/{id}','Admin\AdvController@nUpsave')->middleware('adminuser');
 Route::get('/admin/Adv/add/{id}','Admin\AdvController@nadd')->middleware('adminuser');
+Route::post('/admin/Adv/save/{id}','Admin\AdvController@nsave')->middleware('adminuser');
+Route::match(['get','post'],'/admin/Adv/Upload/{width}/{height}','Admin\AdvController@nUpload')->middleware('adminuser');
+Route::get('/admin/Adv/Advlist/{id}','Admin\AdvController@nAdvlist')->middleware('adminuser');
+Route::get('/admin/Adv/Aadvlist/{id}','Admin\AdvController@Aadvlist')->middleware('adminuser');
+Route::get('/admin/Adv/AdvDelete/{id}','Admin\AdvController@AdvDelete')->middleware('adminuser');
+Route::get('/admin/Adv/UAdv/{id}','Admin\AdvController@UAdv')->middleware('adminuser');
+Route::post();
+
 
 

@@ -3,8 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdvController extends Controller{
     /**
@@ -12,6 +11,7 @@ class AdvController extends Controller{
      * */
 
     public $pagesize = 10;
+    public $img_route = 'images/admin/adv/';
 
     /**
      * 广告位列表
@@ -166,8 +166,102 @@ class AdvController extends Controller{
      * */
     public function nadd($id){
         $advposition = DB::table('adv_position')->where('ap_id',$id)->first();
-
-        return view('Admin/Adv/nadd',['advposition'=>$advposition]);
+        $time = date('Y-m-d',time());
+        return view('Admin/Adv/nadd',['advposition'=>$advposition,'time'=>$time]);
     }
+
+    /**
+     * 广告图片上传
+     * */
+    public function nUpload($width,$height){
+        $files = $_FILES['file'];
+        if(!empty($files)){
+            $extension = explode('.',$files['name'])[1];
+            $img = Image::make($files['tmp_name']);//打开图片资源
+            $img->resize($width, $height);//压缩成大小
+            $route = $this->img_route.md5(time()).random_int(5,5).".".$extension;
+            $res = $img->save($route);//保存图片
+            echo json_encode(array('code'=>'200','message'=>'上传成功','route'=>'/'.$route));
+        }else{
+            echo json_encode(array('code'=>'400','message'=>'上传失败','route'=>''));
+        }
+    }
+
+    /**
+     * 广告保存
+     * */
+    public function nsave($id){
+        $post = $_POST;
+        $insert_adv = array();
+        $adv_time = explode('~',$post['adv_time']);
+        $insert_adv['adv_start_date'] = strtotime($adv_time[0]);
+        $insert_adv['adv_end_date'] = strtotime($adv_time[1]);
+        $insert_adv['adv_title'] = $post['adv_title'];
+        $insert_adv['slide_sort'] = $post['slide_sort'];
+        $adv_content = array();
+        $adv_content['adv_pic'] = $post['img_file'];
+        $adv_content['adv_pic_url'] = $post['href'];
+        $insert_adv['adv_content'] = serialize($adv_content);
+        $insert_adv['ap_id'] = $id;
+        $res =  DB::table('adv')->insert($insert_adv);
+        if($res){
+            success(array(),200,'操作成功');
+        }else{
+            error(400,'操作失败');
+        }
+    }
+
+    /**
+     * 广告列表
+     * */
+    public function nAdvlist($id){
+        return view('Admin/Adv/advlist',['pagesize'=>$this->pagesize,'id'=>$id]);
+    }
+
+    /**
+     * 广告列表的异步数据请求
+     * */
+    public function Aadvlist($id){
+        $advlist = DB::table('adv')->where('ap_id',$id)->orderBy('slide_sort','asc')->paginate($this->pagesize);
+        if(!empty($advlist)){
+            foreach($advlist as $k=>$v){
+                $advlist[$k]->adv_start_date_name = date('Y-m-d',$v->adv_start_date);
+                $advlist[$k]->adv_end_date_name = date('Y-m-d',$v->adv_end_date);
+            }
+        }
+        $advlist = $advlist->toArray();
+        $array = array('code'=>0,'msg'=>'','count'=>$advlist['total'],'data'=>$advlist['data']);
+        echo json_encode($array);
+    }
+
+    /**
+     * 广告删除
+     * */
+    public function AdvDelete($id){
+        $res = DB::table('adv')->where('adv_id',$id)->delete();
+        if($res){
+            echo json_encode(array('code'=>200,'success'=>true,'message'=>'删除成功'));
+        }else{
+            echo json_encode(array('code'=>400,'success'=>false,'message'=>'删除失败'));
+        }
+    }
+
+    /**
+     * 广告编辑
+     * */
+    public function UAdv($id){
+        $advInfo = DB::table('adv')->where('adv_id',$id)->first();
+        $advInfo->adv_time = date('Y-m-d',$advInfo->adv_start_date).'~'.date('Y-m-d',$advInfo->adv_end_date);
+        $advInfo->adv_content = unserialize($advInfo->adv_content);
+        $advposition = DB::table('adv_position')->where('ap_id',$advInfo->ap_id)->first();
+        $time = date('Y-m-d',time());
+        return view('Admin/Adv/UAdv',['advInfo'=>$advInfo,'advposition'=>$advposition,'time'=>$time]);
+    }
+
+
+    /**
+     * 广告编辑保存
+     * */
+
 
 }
