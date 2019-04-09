@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>个人案例之家 - 后台登录</title>
+    <link rel="shortcut icon" href="{{ asset('/images/ico/2019031503084382.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
@@ -39,6 +40,10 @@
         <input type="text" class="text" value="Username" name="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
         <div class="key">
             <input type="password"  name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+        </div>
+
+        <div style="width:100%">
+            {!! Geetest::render('embed') !!}
         </div>
     <div class="signin">
         <input type="submit" value="Login" >

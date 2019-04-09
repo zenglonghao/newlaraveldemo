@@ -1,0 +1,5 @@
+﻿/* IE hack */
+
+#oldBrowser {
+    display: block !important;
+}

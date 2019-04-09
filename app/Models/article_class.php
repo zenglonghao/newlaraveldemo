@@ -7,7 +7,10 @@ class article_class extends Model{
     protected $primaryKey = 'ac_id';//主键
     public $timestamps = false; //取消自动管理(时间戳设置)
 
-
+    public function ce(){
+        $all = article_class::all()->toArray();
+        dd($all);
+    }
 
 }
 

@@ -1,0 +1,37 @@
+.site-right{
+    width: 20%;
+    height: 100%;
+    float: right;
+    margin-left:10px;
+}
+.site-left{
+    width:78%;
+    float:left;
+}
+a, .uk-link {
+    color: #0593d3;
+    text-decoration: none;
+    cursor: pointer;
+}
+body{
+    font-weight:normal;
+    font-size:14px;
+}
+.uk-clearfix:before {
+    content: "";
+    display: table-cell;
+}
+.uk-clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+* + .uk-margin {
+    margin-top: 15px;
+}
+.uk-margin {
+    margin-bottom: 15px;
+}
+div {
+    display: block;
+}

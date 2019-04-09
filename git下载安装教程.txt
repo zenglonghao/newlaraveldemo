@@ -1,0 +1,8 @@
+1.Laravel访问出错错误信息：`Warning: require(/vendor/autoload.php): failed to open stream: No such file or dire
+
+是因为laravel目录缺少autoload.php文件
+
+决解方案
+   composer update  //composer 更新
+   然后
+    php artisan key:generate  //生成laravel  key

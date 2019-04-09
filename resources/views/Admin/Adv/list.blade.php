@@ -138,7 +138,7 @@
                         //删除文章
                         $.ajax({
                             type:'get',
-                            url:'/admin/article/Coursedelete/'+id,
+                            url:'/admin/adv/advPD/'+id,
                             data:{},
                             dataType:'json',
                             success:function(res){

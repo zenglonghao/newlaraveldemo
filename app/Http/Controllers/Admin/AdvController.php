@@ -160,6 +160,33 @@ class AdvController extends Controller{
         }
     }
 
+    /**
+     * 广告位的删除
+     * */
+    public function AdvPositionD($id){
+        DB::beginTransaction();
+        try{
+            DB::table('adv_position')->where('ap_id',$id)->delete();//删除广告位
+            //删除广告信息以及图片信息
+            $adv = DB::table('adv')->where('ap_id',$id)->get()->toArray();
+            if(!empty($adv)){
+                foreach($adv as $v){
+                    $adv_pic = unserialize($v->adv_content)['adv_pic'];
+                    if($adv_pic[0] == '/'){
+                        $adv_pic = '.'.$adv_pic;
+                    }
+                    unlink($adv_pic);
+                }
+                DB::table('adv')->where('ap_id',$id)->delete();
+            }
+            DB::commit();
+            echo json_encode(array('code'=>200,'message'=>'操作成功','success'=>true));die();
+        }catch (\Exception $e){
+            DB::rollBack();
+            echo json_encode(array('code'=>400,'message'=>'操作失败','success'=>false));die();
+        }
+    }
+
 
     /**
      * 添加广告
@@ -238,6 +265,12 @@ class AdvController extends Controller{
      * 广告删除
      * */
     public function AdvDelete($id){
+        $advInfo = DB::table('adv')->where('adv_id',$id)->first();
+        $adv_content = unserialize($advInfo->adv_content);
+        if($adv_content['adv_pic'][0]=='/'){
+            $adv_content['adv_pic'] = '.'.$adv_content['adv_pic'];
+        }
+        unlink($adv_content['adv_pic']);
         $res = DB::table('adv')->where('adv_id',$id)->delete();
         if($res){
             echo json_encode(array('code'=>200,'success'=>true,'message'=>'删除成功'));
@@ -262,6 +295,24 @@ class AdvController extends Controller{
     /**
      * 广告编辑保存
      * */
-
+    public function save($id){
+        $post =$_POST;
+        $update_adv = array();
+        $adv_time = explode('~',$post['adv_time']);
+        $update_adv['adv_start_date'] = strtotime($adv_time[0]);
+        $update_adv['adv_end_date'] = strtotime($adv_time[1]);
+        $update_adv['adv_title'] = $post['adv_title'];
+        $update_adv['slide_sort'] = $post['slide_sort'];
+        $adv_content = array();
+        $adv_content['adv_pic'] = $post['img_file'];
+        $adv_content['adv_pic_url'] = $post['href'];
+        $update_adv['adv_content'] = serialize($adv_content);
+        $res =  DB::table('adv')->where('adv_id',$id)->update($update_adv);
+        if($res){
+            success(array(),200,'操作成功');
+        }else{
+            error(400,'操作失败');
+        }
+    }
 
 }

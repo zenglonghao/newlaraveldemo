@@ -1,0 +1,26 @@
+[2019-04-09 07:10:48]insert into `case_logs` (`user_id`, `user_name`, `url`, `method`, `ip`, `input`, `updated_at`, `created_at`) values (?, ?, ?, ?, ?, ?, ?, ?)
+parmars:[1,"admin","admin/Manage/save","POST","127.0.0.1","{\"_token\":\"2TyDG3YE5XmdiylX1WkUuJClOycoPCs4UCdWzMlZ\",\"Wedsite_name\":\"个人案例之家\",\"Copyright\":\"个人案例之家-版权信息\",\"time_zone\":\"8\",\"icp_number\":null}","2019-04-09 07:10:48","2019-04-09 07:10:48"]
+
+[2019-04-09 07:10:48]UPDATE case_setting SET value = CASE name  WHEN 'time_zone' THEN 'Asia/Shanghai'  WHEN 'Wedsite_name' THEN '个人案例之家'  WHEN 'Copyright' THEN '个人案例之家-版权信息'  WHEN 'icp_number' THEN ''  END WHERE name in('time_zone', 'Wedsite_name', 'Copyright', 'icp_number')
+
+[2019-04-09 07:10:57]insert into `case_logs` (`user_id`, `user_name`, `url`, `method`, `ip`, `input`, `updated_at`, `created_at`) values (?, ?, ?, ?, ?, ?, ?, ?)
+parmars:[1,"admin","admin/Manage/save","POST","127.0.0.1","{\"_token\":\"2TyDG3YE5XmdiylX1WkUuJClOycoPCs4UCdWzMlZ\",\"Wedsite_name\":\"个人案例之家\",\"Copyright\":\"个人案例之家-版权信息\",\"time_zone\":\"8\",\"icp_number\":\"11111\"}","2019-04-09 07:10:57","2019-04-09 07:10:57"]
+
+[2019-04-09 07:10:57]UPDATE case_setting SET value = CASE name  WHEN 'time_zone' THEN 'Asia/Shanghai'  WHEN 'Wedsite_name' THEN '个人案例之家'  WHEN 'Copyright' THEN '个人案例之家-版权信息'  WHEN 'icp_number' THEN '11111'  END WHERE name in('time_zone', 'Wedsite_name', 'Copyright', 'icp_number')
+
+[2019-04-09 07:34:33]select * from `case_navigation` order by `nav_sort` desc
+
+[2019-04-09 07:34:33]select * from `case_adv` where `ap_id` = ? order by `slide_sort` desc
+parmars:[1]
+
+[2019-04-09 07:34:33]select * from `case_adv` where `ap_id` = ? order by `slide_sort` desc
+parmars:[2]
+
+[2019-04-09 07:45:26]select * from `case_navigation` order by `nav_sort` desc
+
+[2019-04-09 07:45:26]select * from `case_adv` where `ap_id` = ? order by `slide_sort` desc
+parmars:[1]
+
+[2019-04-09 07:45:26]select * from `case_adv` where `ap_id` = ? order by `slide_sort` desc
+parmars:[2]
+

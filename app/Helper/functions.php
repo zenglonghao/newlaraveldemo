@@ -32,7 +32,7 @@ if(! function_exists('show_ueditor')){
  * @param $array 打印的数组
  * @param $error 是否终止
  * */
-function per($array=array(),$error=0){
+function p($array=array(),$error=0){
     echo '<pre>';
     print_R($array);
     echo '</pre>';

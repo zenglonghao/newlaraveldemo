@@ -68,6 +68,7 @@
     var ap_id = "{{ $advposition->ap_id }}";
     var width = "{{ $advposition->ap_width }}";
     var height = "{{ $advposition->ap_height }}";
+    var adv_id = "{{ $advInfo->adv_id }}";
     layui.use('laydate', function(){
         var laydate = layui.laydate;
         //执行一个laydate实例
@@ -93,7 +94,7 @@
         //监听提交
         form.on('submit(*)', function(data){
             $.ajax({
-                url: "/admin/Adv/save/"+ap_id,
+                url: "/admin/Adv/nsave/"+adv_id,
                 type: "post",
                 data: data.field,
                 dataType: "json",

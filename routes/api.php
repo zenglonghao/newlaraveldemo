@@ -12,7 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+//访问的时候要加上 域名/api/路径
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get("/",'Api\HomeController@index');
+Route::get('/a','Api\HomeController@ce');
+
